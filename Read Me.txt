@@ -1,0 +1,64 @@
+Author: Divya Patel
+Email: dpate146@uncc.edu
+
+
+1) Open your dsba cluster in putty and winSCP. 
+2) Transfer all the files which are submited to your cluster. 
+
+--------Index.java----------
+3)$ hadoop fs -mkdir /user/<username>/index/ user/<username>/index/input
+4)mkdir -p build
+
+5)javac -cp /opt/cloudera/parcels/CDH/lib/hadoop/*:/opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/* Index.java -d build -Xlint
+
+6)jar -cvf index.jar -C build/ .
+
+7)hadoop fs -rm -r /user/<username>/index/output
+
+8)hadoop jar index.jar org.myorg.Index /user/<username>/index/input /user/<username>/index/output 
+
+9)hadoop fs -cat /user/<username>/index/output/* > index_all.txt (Stroring output file in your cluster)
+
+Note: change username to your username 
+
+---------QueryIndex.java--------
+10)mkdir -p build
+
+11)javac -cp /opt/cloudera/parcels/CDH/lib/hadoop/*:/opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/* QueryIndex.java -d build -Xlint
+
+12)jar -cvf queryindex.jar -C build/ .
+
+13)hadoop jar queryindex.jar org.myorg.QueryIndex path_of_query_file  path_of_output_file_that_we_store_in_local_cluster_after_executing_Index.java path_of_output_file_where_you_want_to_store_your_file
+(E.X.: hadoop jar queryindex.jar org.myorg.QueryIndex /users/dpate146/Asst2/QueryFile /users/dpate146/Asst2/index_all.txt /users/dpate146/Asst2/query_output_index_all.txt)
+
+
+-----------FullIndex.java----------
+14)$ hadoop fs -mkdir /user/<username>/fullindex/ user/<username>/fullindex/input
+15)mkdir -p build
+
+16)javac -cp /opt/cloudera/parcels/CDH/lib/hadoop/*:/opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/* FullIndex.java -d build -Xlint
+
+17)jar -cvf fullindex.jar -C build/ .
+
+18)hadoop fs -rm -r /user/<username>/fullindex/output
+
+19)hadoop jar fullindex.jar org.myorg.FullIndex /user/<username>/fullindex/input /user/<username>/fullindex/output 
+(Stroring output file in your cluster)
+
+20)hadoop fs -cat /user/<username>/fullindex/output/* > fullindex_all.txt 
+Note: change username to your username
+
+------------QueryFullIndex.java-------------------
+21)mkdir -p build
+
+22)javac -cp /opt/cloudera/parcels/CDH/lib/hadoop/*:/opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/* QueryFullIndex.java -d build -Xlint
+
+23)jar -cvf queryfullindex.jar -C build/ .
+24)hadoop jar queryfullindex.jar org.myorg.QueryFullIndex path_of_query_file  path_of_output_file_that_we_store_in_local_cluster_after_executing_Index.java path_of_output_file_where_you_want_to_store_your_file
+
+(E.X.: hadoop jar queryfullindex.jar org.myorg.QueryFullIndex /users/dpate146/Asst2/QueryFile /users/dpate146/Asst2/fullindex_all.txt /users/dpate146/Asst2/query_output_fullindex_all.txt
+
+ )
+
+
+***************************Thank you***************************************

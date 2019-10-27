@@ -1,0 +1,11 @@
+
+such:
+daffodils.txt@564-> In such a jocund company!
+
+that:
+cagedbird.txt@210-> But a bird that stalks
+daffodils.txt@257-> Continuous as the stars that shine
+daffodils.txt@736-> They flash upon that inward eye
+roadnot.txt@350-> Though as for that the passing there
+roadnot.txt@426-> And both that morning equally lay
+roadnot.txt@756-> And that has made all the difference.
